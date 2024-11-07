@@ -1,9 +1,10 @@
 name: PR Plan
 
-# on: [pull_request]
 on:
-  push:
-    branches: [ "main" ]
+  [pull_request]
+# on:
+#   push:
+#     branches: [ "main" ]
 
 permissions:
   contents: read
