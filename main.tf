@@ -10,3 +10,8 @@ terraform {
 output "example_output_homedir" {
   value = provider::local::direxists(pathexpand("~/.ssh"))
 }
+
+resource "local_file" "foo" {
+  content  = "foo!"
+  filename = "${path.module}/foo.bar"
+}
