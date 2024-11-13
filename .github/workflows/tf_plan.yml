@@ -20,11 +20,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: terraform plan
-        uses: dflook/terraform-plan@v1
-        with:
-          path: .
-          # target: local_file.${{ github.event.pull_request.head.ref }}
+      # - name: terraform plan
+      #   uses: dflook/terraform-plan@v1
+      #   with:
+      #     path: .
+      #     # target: local_file.${{ github.event.pull_request.head.ref }}
 
       # - name: $github
       #   run: echo "$GITHUB_CONTEXT"
