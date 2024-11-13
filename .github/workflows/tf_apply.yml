@@ -37,7 +37,7 @@ jobs:
       #     echo "EOF" >> $GITHUB_ENV
       - name: echo head_commit message
         run: |
-          echo "HEAD_COMMIT_MESSAGE=$(echo ${{ github.event.head_commit.message }} | tr '\n' ' ')" >> $GITHUB_ENV
+          echo "HEAD_COMMIT_MESSAGE=$(echo "${{ github.event.head_commit.message }}" | tr '\n' ' ')" >> $GITHUB_ENV
 
       - name: test head_commit message
         run: echo "CUSTOMER=$(echo ${{ env.HEAD_COMMIT_MESSAGE }} | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
