@@ -25,3 +25,8 @@ resource "local_file" "test" {
   content  = "test"
   filename = "${path.module}/test.txt"
 }
+
+resource "local_file" "corbox" {
+  content  = "test"
+  filename = "${path.module}/test.txt"
+}
