@@ -40,7 +40,7 @@ jobs:
       - name: test body 2
         run: |
           BODY=${{ github.event.pull_request.body }}
-          echo "CUSTOMER=\"${BODY//customer: /}\"" >> $GITHUB_ENV
+          echo "CUSTOMER="${BODY//customer: /}"" >> $GITHUB_ENV
 
       - name: test var
         run: echo $CUSTOMER
