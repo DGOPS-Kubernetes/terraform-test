@@ -44,3 +44,10 @@ jobs:
 
       - name: test var
         run: echo $CUSTOMER
+
+      - name: echo head_commit message 2
+        run: |
+          echo "CUSTOMER2=$(echo '${{ github.event.head_commit.message }}' | tr '\n' ' ' | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
+
+      - name: test var
+        run: echo $CUSTOMER2
