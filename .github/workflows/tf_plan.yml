@@ -25,7 +25,3 @@ jobs:
         with:
           path: .
           target: local_file.${{ github.event.pull_request.head.ref }}
-
-      - name: Send notification
-        if: ${{ success() }}
-        run: "curl -H 'Content-Type: application/json' -d '{\"type\":\"message\",\"attachments\":[{\"contentType\":\"application/vnd.microsoft.card.adaptive\",\"contentUrl\":null,\"content\":{\"$schema\":\"http://adaptivecards.io/schemas/adaptive-card.json\",\"type\":\"AdaptiveCard\",\"version\":\"1.5\",\"body\":[{\"type\":\"ColumnSet\",\"columns\":[{\"type\":\"Column\",\"width\":\"50px\",\"items\":[{\"type\":\"Image\",\"url\":\"https://cdn-icons-png.flaticon.com/512/25/25231.png\",\"selectAction\":{\"type\":\"Action.OpenUrl\",\"url\":\"https://github.com/DGOPS-Kubernetes/terraform-test/pulls\"}}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"GitHub Action - terraform-test\",\"wrap\":true,\"style\":\"heading\"},{\"type\":\"TextBlock\",\"text\":\"New pull request was created!\",\"wrap\":true,\"separator\":true}]}]}]}}]}' https://datagrouponline.webhook.office.com/webhookb2/908630de-de22-4e87-8f83-615c5ae95116@a1eb347b-8084-411c-b81a-c60eb204db5d/IncomingWebhook/aa0b84b7363043779de9e31a34da4093/45097df0-f5cc-449e-b8c2-2926c93d342f/V2gVA-jR4XzdW8-F4P9Ekdm97Kj1JJaRjH2X8gSWPt2c01"
