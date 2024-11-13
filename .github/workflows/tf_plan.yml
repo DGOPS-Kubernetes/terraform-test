@@ -31,5 +31,14 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
 
-      - name: test
+      - name: test title
         run: echo ${{ github.event.pull_request.title }}
+
+      - name: test body
+        run: echo ${{ github.event.pull_request.body }}
+
+      - name: test body 2
+        run: |
+          BODY=${{ github.event.pull_request.body }})
+          CUSTOMER="${BODY//customer: /}"
+          echo $CUSTOMER
