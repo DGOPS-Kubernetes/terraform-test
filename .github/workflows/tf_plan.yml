@@ -56,6 +56,6 @@ jobs:
           echo "contains 'customer: '"
 
       - name: test not contains
-        if: ! contains(github.event.pull_request.title, 'customer:')
+        if: "!contains(github.event.pull_request.title, 'customer:')"
         run: |
           echo "not contains 'customer: '"
