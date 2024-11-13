@@ -21,7 +21,7 @@ resource "local_file" "bar" {
   filename = "${path.module}/bar.foo"
 }
 
-resource "local_file" "t3st" {
+resource "local_file" "test" {
   content  = "test"
   filename = "${path.module}/test.txt"
 }
