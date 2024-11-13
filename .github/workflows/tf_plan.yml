@@ -39,8 +39,7 @@ jobs:
 
       - name: test body 2
         run: |
-          BODY=${{ github.event.pull_request.body }}
-          echo "CUSTOMER=$(echo $BODY | cut -d ' ' -f2)" >> $GITHUB_ENV
+          echo "CUSTOMER=$(echo ${{ github.event.pull_request.body }} | cut -d ' ' -f2)" >> $GITHUB_ENV
 
       - name: test var
         run: echo $CUSTOMER
