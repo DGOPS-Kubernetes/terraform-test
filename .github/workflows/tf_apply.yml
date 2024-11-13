@@ -57,3 +57,13 @@ jobs:
         with:
           path: .
           target: local_file.${{ env.CUSTOMER }}
+
+      - name: test contains
+        if: "contains(${{ github.event.head_commit.message }}, \"customer: \")"
+        run: |
+          echo "contains 'customer: '"
+
+      - name: test not contains
+        if: "!contains(${{ github.event.head_commit.message }}, \"customer: \")"
+        run: |
+          echo "not contains 'customer: '"
