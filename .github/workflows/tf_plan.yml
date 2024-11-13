@@ -44,11 +44,11 @@ jobs:
       - name: test var
         run: echo $CUSTOMER
 
-      - name: terraform plan
-        uses: dflook/terraform-plan@v1
-        with:
-          path: .
-          target: local_file.${{ env.CUSTOMER }}
+      # - name: terraform plan
+      #   uses: dflook/terraform-plan@v1
+      #   with:
+      #     path: .
+      #     target: local_file.${{ env.CUSTOMER }}
 
       - name: test contains
         if: contains(github.event.pull_request.title, 'customer:\ ')
