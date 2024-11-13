@@ -26,10 +26,20 @@ jobs:
           path: .
           # target: local_file.${{ github.event.pull_request.head.ref }}
 
-      - name: $github
-        run: echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+      # - name: $github
+      #   run: echo "$GITHUB_CONTEXT"
+      #   env:
+      #     GITHUB_CONTEXT: ${{ toJson(github) }}
 
-      - name: test
+      - name: test title
         run: echo ${{ github.event.pull_request.title }}
+
+      - name: test body
+        run: echo ${{ github.event.pull_request.body }}
+
+      - name: test body 2
+        run: |
+          echo "CUSTOMER=$(echo ${{ github.event.pull_request.body }} | cut -d ' ' -f2)" >> $GITHUB_ENV
+
+      - name: test var
+        run: echo $CUSTOMER
