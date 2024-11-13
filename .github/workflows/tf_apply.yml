@@ -23,3 +23,4 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           path: .
+          target: local_file.${{ github.event.pull_request.head.ref }}
