@@ -35,19 +35,25 @@ jobs:
       #     echo "HEAD_COMMIT_MESSAGE<<EOF" >> $GITHUB_ENV
       #     echo "${{ github.event.head_commit.message }}" >> $GITHUB_ENV
       #     echo "EOF" >> $GITHUB_ENV
-      - name: echo head_commit message
-        run: |
-          echo "HEAD_COMMIT_MESSAGE=$(echo '${{ github.event.head_commit.message }}' | tr '\n' ' ')" >> $GITHUB_ENV
+      # - name: echo head_commit message
+      #   run: |
+      #     echo "HEAD_COMMIT_MESSAGE=$(echo '${{ github.event.head_commit.message }}' | tr '\n' ' ')" >> $GITHUB_ENV
 
-      - name: test head_commit message
-        run: echo "CUSTOMER=$(echo '${{ env.HEAD_COMMIT_MESSAGE }}' | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
+      # - name: test head_commit message
+      #   run: echo "CUSTOMER=$(echo '${{ env.HEAD_COMMIT_MESSAGE }}' | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
+
+      # - name: test var
+      #   run: echo $CUSTOMER
+
+      - name: echo head_commit message 2
+        run: |
+          echo "CUSTOMER=$(echo '${{ github.event.head_commit.message }}' | tr '\n' ' ' | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
 
       - name: test var
         run: echo $CUSTOMER
 
-      - name: echo head_commit message 2
-        run: |
-          echo "CUSTOMER2=$(echo '${{ github.event.head_commit.message }}' | tr '\n' ' ' | cut -d ':' -f2 | cut -d ' ' -f2)" >> $GITHUB_ENV
-
-      - name: test var
-        run: echo $CUSTOMER2
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          path: .
+          target: local_file.${{ env.CUSTOMER }}
