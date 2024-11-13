@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   plan:
+    if: contains(github.event.head_commit.message, 'customer:')
     runs-on: ubuntu-latest
     name: Create terraform plan
     env:
@@ -24,7 +25,7 @@ jobs:
       #   uses: dflook/terraform-plan@v1
       #   with:
       #     path: .
-      #     # target: local_file.${{ github.event.pull_request.head.ref }}
+      #     target: local_file.${{ github.event.pull_request.head.ref }}
 
       # - name: $github
       #   run: echo "$GITHUB_CONTEXT"
@@ -41,21 +42,21 @@ jobs:
         run: |
           echo "CUSTOMER=$(echo ${{ github.event.pull_request.title }} | cut -d ' ' -f2)" >> $GITHUB_ENV
 
-      - name: test var
-        run: echo $CUSTOMER
+      # - name: test var
+      #   run: echo $CUSTOMER
 
-      # - name: terraform plan
-      #   uses: dflook/terraform-plan@v1
-      #   with:
-      #     path: .
-      #     target: local_file.${{ env.CUSTOMER }}
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: .
+          target: local_file.${{ env.CUSTOMER }}
 
-      - name: test contains
-        if: contains(github.event.pull_request.title, 'customer:')
-        run: |
-          echo "contains 'customer: '"
+      # - name: test contains
+      #   if: contains(github.event.pull_request.title, 'customer:')
+      #   run: |
+      #     echo "contains 'customer: '"
 
-      - name: test not contains
-        if: "!contains(github.event.pull_request.title, 'customer:')"
-        run: |
-          echo "not contains 'customer: '"
+      # - name: test not contains
+      #   if: "!contains(github.event.pull_request.title, 'customer:')"
+      #   run: |
+      #     echo "not contains 'customer: '"
