@@ -24,14 +24,12 @@ jobs:
         uses: dflook/terraform-plan@v1
         with:
           path: .
-          target: local_file.${{ github.event.pull_request.head.ref }}
+          # target: local_file.${{ github.event.pull_request.head.ref }}
 
-      - name: Store branch name
-        run: echo ${{ github.event.pull_request.head.ref }} > branch_name.txt
+      - name: $github
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
 
-      - name: Upload branch_name file
-        uses: actions/upload-artifact@v4
-        with:
-          name: branch_name
-          path: branch_name.txt
-          retention-days: 7
+      - name: test
+        run: echo ${{ github.event.pull_request.title }}
