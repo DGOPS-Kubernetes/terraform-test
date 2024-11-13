@@ -20,3 +20,8 @@ resource "local_file" "bar" {
   content  = "bar!"
   filename = "${path.module}/bar.foo"
 }
+
+resource "local_file" "test" {
+  content  = "test"
+  filename = "${path.module}/test.txt"
+}
