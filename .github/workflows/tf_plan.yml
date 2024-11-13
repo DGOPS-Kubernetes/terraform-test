@@ -31,11 +31,11 @@ jobs:
       #   env:
       #     GITHUB_CONTEXT: ${{ toJson(github) }}
 
-      - name: test body
-        run: echo ${{ github.event.pull_request.body }}
+      # - name: test body
+      #   run: echo ${{ github.event.pull_request.body }}
 
-      - name: test title
-        run: echo ${{ github.event.pull_request.title }}
+      # - name: test title
+      #   run: echo ${{ github.event.pull_request.title }}
 
       - name: test title 2
         run: |
@@ -43,3 +43,9 @@ jobs:
 
       - name: test var
         run: echo $CUSTOMER
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: .
+          target: local_file.${{ env.CUSTOMER }}
