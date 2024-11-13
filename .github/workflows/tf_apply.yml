@@ -19,16 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download branch_name file
-        uses: actions/download-artifact@v4
-        with:
-          name: branch_name
-
-      - name: set branch_name as env var
-        run: BRANCH_NAME=`cat branch_name.txt`
-
       - name: terraform apply
         uses: dflook/terraform-apply@v1
         with:
           path: .
-          target: local_file.${{ env.BRANCH_NAME }}
+          # target: local_file.${{ env.BRANCH_NAME }}
+
+      - name: test
+        run: echo ${{ github.event.comment.body }}
