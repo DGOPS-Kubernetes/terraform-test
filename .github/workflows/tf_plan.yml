@@ -30,3 +30,6 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
+
+      - name: test
+        run: echo ${{ github.event.pull_request.title }}
