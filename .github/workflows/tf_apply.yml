@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   apply:
+    if: contains(github.event.head_commit.message, 'customer:')
     runs-on: ubuntu-latest
     name: Apply approved plan
     env:
@@ -52,18 +53,18 @@ jobs:
       - name: test var
         run: echo $CUSTOMER
 
-      # - name: terraform apply
-      #   uses: dflook/terraform-apply@v1
-      #   with:
-      #     path: .
-      #     target: local_file.${{ env.CUSTOMER }}
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          path: .
+          target: local_file.${{ env.CUSTOMER }}
 
-      - name: test contains
-        if: contains(github.event.head_commit.message, 'customer:')
-        run: |
-          echo "contains 'customer: '"
+      # - name: test contains
+      #   if: contains(github.event.head_commit.message, 'customer:')
+      #   run: |
+      #     echo "contains 'customer: '"
 
-      - name: test not contains
-        if: "!contains(github.event.head_commit.message, 'customer:')"
-        run: |
-          echo "not contains 'customer: '"
+      # - name: test not contains
+      #   if: "!contains(github.event.head_commit.message, 'customer:')"
+      #   run: |
+      #     echo "not contains 'customer: '"
